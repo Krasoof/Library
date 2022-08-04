@@ -2,5 +2,5 @@
 
 public enum Genere
 {
-    
+    Fantasy, Custom, Popular_Science
 }
