@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "829552a2-ec53-4887-be9f-d38fc5eb6558": {
+      "ProjectGuid": "829552a2-ec53-4887-be9f-d38fc5eb6558",
+      "DisplayName": "Library.Console",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
