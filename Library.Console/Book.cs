@@ -11,9 +11,9 @@ public class Book
 
     public Genre Genre { get; private set; }
     
-    public BookState BookState { get; private set; } 
+    public BookState BookState { get;  set; } 
 
-    public string ISBN { get; private set; }
+    public string ISBN { get; set; }
 
     public Author Author { get; private set; }
 
@@ -33,6 +33,7 @@ public class Book
         Title = title;
         ReleaseDate = releaseDate;
         NumberOfPages = numberOfPages;
+        if (numberOfPages < 0) throw new ArgumentException();
         ISBN = isbn;
         BookState = bookState;
         Genre = genre;

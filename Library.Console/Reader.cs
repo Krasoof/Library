@@ -9,6 +9,9 @@
         public string LastName { get; private set; } = default!;
 
         public List<BookBorrow> BorrowedBooks { get; private set; } = new();
+        
+        // public Dictionary<BookBorrow, LibraryFacility> BorrowedBooks { get; private set; } = new(); a new concept to discuss
+        // my father is HashMap fanatic
 
         public Reader(string firstName, string lastName)
         {
@@ -16,14 +19,15 @@
             LastName = lastName;
         }
 
+        public bool CheckMyBooks(Book book) => BorrowedBooks.Where(e => e.Book.ISBN == book.ISBN).Any();
+
         public void BorrowBook(BookBorrow bookBorrow)
         {
             if (BorrowedBooks.Count >= MaxNumberOfBorrowedBooks)
             {
                 throw new InvalidOperationException("Invalid");
             }
-
-            BorrowedBooks.Add(bookBorrow);
+            
         }
 
         public void ReturnBook(string isbn)
@@ -41,5 +45,6 @@
 
             BorrowedBooks.Remove(bookBorrow);
         }
+        
     }
 }

@@ -20,7 +20,10 @@ public class Librarian
         Name = name;
         Surname = surname;
         Age = age;
+        if (age > 70) throw new InvalidOperationException();
         Salary = salary;
+        if (salary < 0) throw new InvalidOperationException();
         Expo = expo;
+        if (expo < 0) throw new InvalidOperationException();
     }
 }

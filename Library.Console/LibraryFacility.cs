@@ -12,9 +12,9 @@ public class LibraryFacility
 
     public int HouseNumber { get; private set; } = default!;
 
-    public List<Librarian> Librarians { get; private set; } = new();
+    public HashSet<Librarian> Librarians { get; private set; } = new();
 
-    public List<BookBorrow> BorrowedBooks { get; set; } = new();
+    public HashSet<BookBorrow> BorrowedBooks { get; set; } = new();
 
     public HashSet<Book> Books { get; private set; } = new();
 
@@ -26,6 +26,12 @@ public class LibraryFacility
         City = city;
     }
 
+    public bool CheckAvailability(Book book) => Books.Where(x => x.ISBN == book.ISBN).Any();
+    
+    public bool CheckThatBookBorrowedFromOurLib (Book book) => BorrowedBooks.Where(e =>e.Book.ISBN == book.ISBN).Any();
+    
+    
+    
     public void AddLibrarian(Librarian librarian)
     {
         Librarians.Add(librarian);
@@ -34,5 +40,36 @@ public class LibraryFacility
     public void AddBooks(HashSet<Book> books) 
     {
         Books.Union(books);
-    } 
+    }
+
+    public void MoveFromBooksToBorrow(Book book, BookState state)
+    {
+        if (CheckAvailability(book))
+        {
+            var BookToBorrow = Books.Where(e => e.ISBN == book.ISBN).First();
+            BorrowedBooks.Add(new BookBorrow(DateTime.Now, BookToBorrow, this));
+            Books.Remove(BookToBorrow);
+        }
+    }
+
+    public void MoveFromBorrowToBooks(Book book)
+    {
+        if (CheckThatBookBorrowedFromOurLib(book))
+        {
+            var BookToRecive = BorrowedBooks.Where(e => e.Book.ISBN == book.ISBN).First();
+            BorrowedBooks.Remove(BookToRecive);
+            Books.Add(BookToRecive.Book);
+        }
+            
+    }
+    
+
+    public void AddBook(Book book)
+    {
+        if (book.BookState == BookState.Trash) throw new Exception("!!!");
+        
+        Books.Add(book);
+    }
+
+    
 }
