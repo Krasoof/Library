@@ -16,29 +16,23 @@ public class Author
 
     public void AddBookToAuthor(Book book)
     {
-        if (book.Author.Equals(this))
+        if (book.Author.Equals(this)) //we cannot add Book other author to our list
         {
             Books.Add(book);
+        }
+        else
+        {
+            throw new InvalidOperationException("");
         }
     }
 
     public void AddBooksToAuthor(HashSet<Book> books)
     {
-        foreach (var e in books)
-        {
+        var NonExistingBooks = books.Where(e => e.Author.Equals(this)).ToHashSet();
+        //we collect books with same author 
 
-            if (e.Author.Equals(this))
-            {
-                Books.Add(e);
-            }
+        Books.Union(books);
 
-            if (!e.Author.Equals(this))
-            {
-                throw new Exception("It not author");
-            }
-            
-        }
-       
     }
     public Author(string name, string surrname, int age)
     {
@@ -46,5 +40,23 @@ public class Author
         Surrname = surrname;
         if (age < 12) throw new Exception();
         Age = age;
+    }
+
+    protected bool Equals(Author other)
+    {
+        return Surrname == other.Surrname;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return false;
+        if (ReferenceEquals(this, obj)) return true;
+        if (obj.GetType() != this.GetType()) return false;
+        return Equals((Author)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return Surrname.GetHashCode();
     }
 }

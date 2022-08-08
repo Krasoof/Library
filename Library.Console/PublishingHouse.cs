@@ -20,20 +20,22 @@ public class PublishingHouse
         {
             Books.Add(book);
         }
+        else
+        {
+            throw new InvalidOperationException("We didnt publish this book");
+        }
     }
-
-    public void AddBooks(List<Book> books)
-    {
-       
-        ////
-
-    }
+    
 
     public void StopSupportBook(Book book)
     {
         if (book.PublishingHouse.Equals(this))
         {
             Books.Remove(book);
+        }
+        else
+        {
+            throw new InvalidOperationException("We already dont supp this book");
         }
     }
     public PublishingHouse(string name, string city, string country)
