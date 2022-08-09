@@ -1,4 +1,4 @@
-﻿namespace Library.Console;
+﻿namespace Library.Domain.Constants;
 
 public enum Genre
 {

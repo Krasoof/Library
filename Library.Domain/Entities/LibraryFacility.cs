@@ -1,4 +1,6 @@
-﻿namespace Library.Console;
+﻿using Library.Domain.Constants;
+
+namespace Library.Domain.Entities;
 
 public class LibraryFacility
 {
@@ -47,7 +49,7 @@ public class LibraryFacility
         if (CheckAvailability(book))
         {
             var BookToBorrow = Books.Where(e => e.ISBN == book.ISBN).First();
-            BorrowedBooks.Add(new BookBorrow(DateTime.Now, BookToBorrow, this));
+            BorrowedBooks.Add(new BookBorrow(DateTime.Now, BookToBorrow, this, null!));
             Books.Remove(BookToBorrow);
         }
     }

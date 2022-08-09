@@ -5,7 +5,27 @@
       "ProjectGuid": "829552a2-ec53-4887-be9f-d38fc5eb6558",
       "DisplayName": "Library.Console",
       "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "52c71fad-91f8-4c44-b54a-b9795d932fc8": {
+      "ProjectGuid": "52c71fad-91f8-4c44-b54a-b9795d932fc8",
+      "DisplayName": "Library.Console",
+      "ColorIndex": 1
+    },
+    "05694c17-c6eb-4c62-b874-0a80f63ba1f6": {
+      "ProjectGuid": "05694c17-c6eb-4c62-b874-0a80f63ba1f6",
+      "DisplayName": "Library.Domain",
+      "ColorIndex": 2
+    },
+    "f3bc8af1-48be-4327-bb8f-d0e3503abefb": {
+      "ProjectGuid": "f3bc8af1-48be-4327-bb8f-d0e3503abefb",
+      "DisplayName": "Library.Application",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 4
 }

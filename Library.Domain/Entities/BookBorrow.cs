@@ -1,4 +1,6 @@
-﻿namespace Library.Console;
+﻿using Library.Domain.Constants;
+
+namespace Library.Domain.Entities;
 
 public class BookBorrow
 {
@@ -14,16 +16,19 @@ public class BookBorrow
 
     public BookState? BookStateAfterReturn { get; private set; }
 
-    //public Reader Reader { get; private set; }
+    public int ReaderId { get; private set; }
+
+    public Reader Reader { get; private set; }
 
     public LibraryFacility LibraryFacility { get; private set; }
 
-    public BookBorrow(DateTime dateOfBorrow, Book book, LibraryFacility libraryFacility)
+    public BookBorrow(DateTime dateOfBorrow, Book book, LibraryFacility libraryFacility, Reader reader)
     {
         DateOfBorrow = dateOfBorrow;
         DateOfReturn = dateOfBorrow.AddMonths(DefaultLengthOfBorrow);
         Book = book;
         BookStateBeforeBorrow = book.BookState;
+        Reader = reader;
         LibraryFacility = libraryFacility;
     }
 }
