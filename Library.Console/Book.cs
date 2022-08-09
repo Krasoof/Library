@@ -11,9 +11,9 @@ public class Book
 
     public Genre Genre { get; private set; }
     
-    public BookState BookState { get; private set; } 
+    public BookState BookState { get;  set; } 
 
-    public string ISBN { get; private set; }
+    public string ISBN { get; set; }
 
     public Author Author { get; private set; }
 
@@ -33,6 +33,7 @@ public class Book
         Title = title;
         ReleaseDate = releaseDate;
         NumberOfPages = numberOfPages;
+        if (numberOfPages < 0) throw new ArgumentException();
         ISBN = isbn;
         BookState = bookState;
         Genre = genre;
@@ -40,4 +41,23 @@ public class Book
         PublishingHouse = publishingHouse;
         Author = author;
     }
+
+    private sealed class IsbnEqualityComparer : IEqualityComparer<Book>
+    {
+        public bool Equals(Book x, Book y)
+        {
+            if (ReferenceEquals(x, y)) return true;
+            if (ReferenceEquals(x, null)) return false;
+            if (ReferenceEquals(y, null)) return false;
+            if (x.GetType() != y.GetType()) return false;
+            return x.ISBN == y.ISBN;
+        }
+
+        public int GetHashCode(Book obj)
+        {
+            return obj.ISBN.GetHashCode();
+        }
+    }
+
+    public static IEqualityComparer<Book> IsbnComparer { get; } = new IsbnEqualityComparer();
 }
