@@ -25,6 +25,11 @@ public class Book
 
     //public LibraryFacility LibraryFacility { get; private set; }
 
+    private Book()
+    {
+
+    }
+
     public Book(string title,
                 DateTime releaseDate,
                 Genre genre,
