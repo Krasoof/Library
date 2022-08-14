@@ -9,6 +9,7 @@ namespace Library.Application.EF.Configurations
         public void Configure(EntityTypeBuilder<Book> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.HasOne<Author>(x => x.Author).WithMany(x => x.Books).HasForeignKey(x => x.AuthorId);
         }
     }
 }

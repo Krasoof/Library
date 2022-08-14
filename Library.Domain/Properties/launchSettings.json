@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Library.Domain": {
+      "commandName": "Project"
+    },
+    "Profil 1": {
+      "commandName": "Executable"
+    }
+  }
+}
